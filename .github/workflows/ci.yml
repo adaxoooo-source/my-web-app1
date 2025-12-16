@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: |
+        # Si tu as des dépendances Node, tu les installes ici
+        # Pour ce projet simple, on n'a pas besoin de npm install
+        echo "No dependencies to install"
+
+    - name: Run tests
+      run: |
+        # Pour ce projet simple, on peut juste vérifier que index.html existe
+        if [ ! -f index.html ]; then
+          echo "index.html not found!"
+          exit 1
+        fi
+
+    - name: Build artifact
+      run: |
+        echo "Build step (pour un site statique, rien à compiler)"
+        mkdir -p build
+        cp -r * build/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-build
+        path: build/
