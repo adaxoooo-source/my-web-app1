@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 2 - My Web App</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,7 +11,7 @@
     <div class="container">
         <h1>Page 2 ✨</h1>
         <img src="images/page2.jpg" alt="Page 2 Image" class="page-image">
-        <p>Un fond interactif avec particules animées, combiné à une image et un texte accrocheur pour un rendu futuriste !</p>
+        <p>Plongez dans un univers futuriste avec un fond interactif animé et une mise en page élégante.</p>
         <button onclick="location.href='index.html'">Retour à l'accueil</button>
     </div>
 
@@ -20,14 +21,17 @@
         canvas.height = window.innerHeight;
         const ctx = canvas.getContext('2d');
 
+        const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
         let particles = [];
-        for(let i=0;i<100;i++){
+
+        for(let i=0;i<120;i++){
             particles.push({
                 x: Math.random()*canvas.width,
                 y: Math.random()*canvas.height,
                 r: Math.random()*3+1,
                 dx: Math.random()*2-1,
-                dy: Math.random()*2-1
+                dy: Math.random()*2-1,
+                color: colors[Math.floor(Math.random()*colors.length)]
             });
         }
 
@@ -36,10 +40,10 @@
             particles.forEach(p=>{
                 ctx.beginPath();
                 ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-                ctx.fillStyle="white";
+                ctx.fillStyle = p.color;
                 ctx.fill();
-                p.x+=p.dx;
-                p.y+=p.dy;
+                p.x += p.dx;
+                p.y += p.dy;
                 if(p.x<0 || p.x>canvas.width) p.dx*=-1;
                 if(p.y<0 || p.y>canvas.height) p.dy*=-1;
             });
@@ -47,6 +51,12 @@
         }
 
         animate();
+
+        // Redimensionner le canvas au resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
