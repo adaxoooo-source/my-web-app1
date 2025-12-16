@@ -2,13 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>My Web App - Docker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App - Docker CI/CD</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenue sur My Web App !</h1>
-    <p>Pipeline CI/CD et Docker Desktop en action 🚀</p>
-    <p>Le site est servi depuis un container Docker sur le port 80.</p>
+    <div class="container">
+        <h1>🚀 My Web App</h1>
+        <p>Pipeline CI/CD et Docker Desktop en action !</p>
+        <p>Le site est servi depuis un container Docker sur le port <strong>80</strong>.</p>
+        <div class="status">
+            <span class="dot running"></span>
+            <span>Container en cours d'exécution ✅</span>
+        </div>
+        <p>Profitez de votre site web statique moderne.</p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
