@@ -1,69 +1,10 @@
-/* --- Style global --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 50px;
-    text-align: center;
-    color: white;
-}
-
-/* Conteneur central */
-.container {
-    position: relative;
-    z-index: 1;
-    background: rgba(0,0,0,0.5);
-    padding: 30px;
-    border-radius: 15px;
-    display: inline-block;
-}
-
-/* Titre principal */
-h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    animation: fadeIn 2s ease forwards;
-    opacity: 0;
-}
-
-/* Animation fade-in pour le titre */
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-20px);}
-    100% { opacity: 1; transform: translateY(0);}
-}
-
-/* Paragraphes */
-p {
-    font-size: 1.2em;
-}
-
-/* --- Boutons --- */
-.buttons {
-    margin: 30px 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-button {
-    background: linear-gradient(90deg, #ff512f, #dd2476);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 5px #ff512f, 0 0 25px #dd2476, 0 0 50px #ff512f;
-}
-
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #ff512f, 0 0 40px #dd2476, 0 0 80px #ff512f;
-}
-
-/* --- Fond animé index --- */
-body.index {
-    background: linear-gradient(-45deg, #1d2671, #c33764, #ff512f, #dd2476);
+    margin:0;
+    padding:0;
+    text-align:center;
+    color:white;
+    background: linear-gradient(135deg, #1d2671, #c33764, #ff512f, #dd2476);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
@@ -72,4 +13,101 @@ body.index {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
+}
+
+.container {
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 15px;
+    max-width: 700px;
+}
+
+.page-image {
+    max-width: 80%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+    border:none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #00ff99, #0066ff);
+    color:white;
+    cursor:pointer;
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
+    transition: all 0.4s ease;
+}
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(0,255,255,0.8);
+}
+
+/* Glitch pour page3 */
+.glitch {
+    font-size: 3em;
+    position: relative;
+    color: white;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #f00;
+    animation: glitchTop 1s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #0ff;
+    animation: glitchBottom 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+    0% { clip: rect(0,900px,0,0);}
+    10% { clip: rect(10px,900px,50px,0);}
+    20% { clip: rect(20px,900px,70px,0);}
+    30% { clip: rect(0,900px,30px,0);}
+    40% { clip: rect(15px,900px,60px,0);}
+    50% { clip: rect(25px,900px,80px,0);}
+    60% { clip: rect(0,900px,20px,0);}
+    70% { clip: rect(10px,900px,40px,0);}
+    80% { clip: rect(0,900px,30px,0);}
+    90% { clip: rect(20px,900px,70px,0);}
+    100% { clip: rect(0,900px,0,0);}
+}
+
+@keyframes glitchBottom {
+    0% { clip: rect(0,900px,0,0);}
+    10% { clip: rect(20px,900px,60px,0);}
+    20% { clip: rect(10px,900px,50px,0);}
+    30% { clip: rect(25px,900px,80px,0);}
+    40% { clip: rect(5px,900px,30px,0);}
+    50% { clip: rect(0,900px,20px,0);}
+    60% { clip: rect(15px,900px,60px,0);}
+    70% { clip: rect(0,900px,40px,0);}
+    80% { clip: rect(10px,900px,50px,0);}
+    90% { clip: rect(20px,900px,70px,0);}
+    100% { clip: rect(0,900px,0,0);}
+}
+
+/* Particles pour page2 */
+body.page2 canvas#particles {
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:0;
 }
