@@ -7,54 +7,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page2">
+
+    <!-- Canvas pour particules -->
     <canvas id="particles"></canvas>
+
     <div class="container">
         <h1>Intégration Continue ⚙️</h1>
         <img src="images/page2.jpg" alt="Intégration Continue" class="page-image">
         <p>Automatisez vos tests et builds à chaque modification du code pour garantir une qualité constante.</p>
-        <button onclick="location.href='index.html'">Retour à l'accueil</button>
+        <button onclick="goHome()">Retour à l'accueil</button>
     </div>
 
     <script>
+        // Gestion canvas
         const canvas = document.getElementById('particles');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
         const ctx = canvas.getContext('2d');
 
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Particules colorées
         const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
         let particles = [];
 
-        for(let i=0;i<100;i++){
-            particles.push({
-                x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height,
-                r: Math.random()*3+1,
-                dx: Math.random()*2-1,
-                dy: Math.random()*2-1,
-                color: colors[Math.floor(Math.random()*colors.length)]
-            });
+        function createParticles() {
+            particles = [];
+            for(let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 3 + 1,
+                    dx: Math.random() * 2 - 1,
+                    dy: Math.random() * 2 - 1,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
         }
 
-        function animate(){
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach(p=>{
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
                 ctx.beginPath();
-                ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;
                 ctx.fill();
                 p.x += p.dx;
                 p.y += p.dy;
-                if(p.x<0 || p.x>canvas.width) p.dx*=-1;
-                if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+
+                if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateParticles);
         }
 
-        animate();
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        createParticles();
+        animateParticles();
+
+        // Navigation
+        function goHome() {
+            window.location.href = 'index.html';
+        }
     </script>
+
 </body>
 </html>
