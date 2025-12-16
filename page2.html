@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2 - My Web App</title>
+    <title>Page 2 - Intégration Continue</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page2">
     <canvas id="particles"></canvas>
     <div class="container">
-        <h1>Page 2 ✨</h1>
-        <img src="images/page2.jpg" alt="Page 2 Image" class="page-image">
-        <p>Plongez dans un univers futuriste avec un fond interactif animé et une mise en page élégante.</p>
+        <h1>Intégration Continue ⚙️</h1>
+        <img src="images/page2.jpg" alt="Intégration Continue" class="page-image">
+        <p>Automatisez vos tests et builds à chaque modification du code pour garantir une qualité constante.</p>
         <button onclick="location.href='index.html'">Retour à l'accueil</button>
     </div>
 
@@ -24,7 +24,7 @@
         const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
         let particles = [];
 
-        for(let i=0;i<120;i++){
+        for(let i=0;i<100;i++){
             particles.push({
                 x: Math.random()*canvas.width,
                 y: Math.random()*canvas.height,
@@ -51,8 +51,6 @@
         }
 
         animate();
-
-        // Redimensionner le canvas au resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
