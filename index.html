@@ -6,52 +6,66 @@
     <title>My Web App - Docker CI/CD</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="index">
     <div class="container">
         <h1>🚀 My Web App</h1>
-        <p>Bienvenue sur le site de démonstration du pipeline CI/CD avec Docker Desktop !</p>
+        <p>
+            Bienvenue sur l’application web déployée automatiquement
+            avec <strong>Docker</strong> et <strong>GitHub Actions</strong>.
+        </p>
 
         <div class="buttons">
-            <button onclick="location.href='page1.html'">Découvrir Page 1</button>
-            <button onclick="location.href='page2.html'">Découvrir Page 2</button>
-            <button onclick="location.href='page3.html'">Découvrir Page 3</button>
-            <button onclick="location.href='page4.html'">Découvrir Page 4</button>
+            <button onclick="window.location.href='page1.html'">Page 1</button>
+            <button onclick="window.location.href='page2.html'">Page 2</button>
+            <button onclick="window.location.href='page3.html'">Page 3</button>
+            <button onclick="window.location.href='page4.html'">Page 4</button>
         </div>
 
-        <p>Le site est servi depuis un container Docker sur le port <strong>80</strong>.</p>
+        <p class="info">
+            📦 Application servie depuis un <strong>container Docker</strong><br>
+            🌐 Accessible sur <strong>http://localhost:8080</strong>
+        </p>
     </div>
 
-    <!-- Effet particules léger pour index -->
+    <!-- Fond animé léger -->
     <canvas id="particles"></canvas>
 
     <script>
         const canvas = document.getElementById('particles');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
         const ctx = canvas.getContext('2d');
 
-        let particles = [];
-        for(let i=0;i<50;i++){
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particles = [];
+        for (let i = 0; i < 40; i++) {
             particles.push({
-                x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height,
-                r: Math.random()*2+1,
-                dx: Math.random()*1-0.5,
-                dy: Math.random()*1-0.5
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1,
+                dx: Math.random() - 0.5,
+                dy: Math.random() - 0.5
             });
         }
 
-        function animate(){
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            particles.forEach(p=>{
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
                 ctx.beginPath();
-                ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-                ctx.fillStyle="rgba(255,255,255,0.7)";
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.6)";
                 ctx.fill();
-                p.x+=p.dx;
-                p.y+=p.dy;
-                if(p.x<0 || p.x>canvas.width) p.dx*=-1;
-                if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+
+                p.x += p.dx;
+                p.y += p.dy;
+
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
             });
             requestAnimationFrame(animate);
         }
