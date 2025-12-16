@@ -15,29 +15,31 @@ body {
 
 h1 {
     font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 p {
     font-size: 1.2em;
 }
 
-.status {
-    margin: 20px 0;
-    font-size: 1.1em;
+.buttons {
+    margin: 30px 0;
     display: flex;
-    align-items: center;
+    gap: 15px;
     justify-content: center;
-    gap: 10px;
 }
 
-.dot {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.running {
+button {
     background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
 }
