@@ -2,42 +2,125 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>My Web App | Accueil</title>
+    <title>My Web App | Solutions Digitales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Fond galaxie -->
-    <div class="galaxy"></div>
+<!-- Fond galaxie -->
+<canvas id="galaxy"></canvas>
 
-    <!-- Header -->
-    <header>
-        <h1 class="logo">🌌 My Web App</h1>
-        <nav>
-            <a href="index.html" class="active">Accueil</a>
-            <a href="about.html">À propos</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+<!-- Header -->
+<header class="header">
+    <div class="logo">🌌 My Web App</div>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
-    <!-- Section principale -->
-    <section class="hero">
-        <h2>Solutions digitales venues d’ailleurs</h2>
-        <p>
-            My Web App accompagne les entreprises dans la création  
-            d’applications web modernes, sécurisées et innovantes.
-        </p>
+<!-- HERO -->
+<section class="hero">
+    <h1>Construisons le futur du web</h1>
+    <p>
+        My Web App est une entreprise spécialisée dans la création
+        d’applications web modernes, sécurisées et performantes.
+    </p>
+    <a href="services.html" class="btn">Explorer nos services</a>
+</section>
 
-        <a href="services.html" class="btn">
-            Explorer nos services 🚀
-        </a>
-    </section>
+<!-- SECTION À PROPOS -->
+<section class="section glass">
+    <h2>À propos de nous</h2>
+    <p>
+        Nous accompagnons les entreprises et les entrepreneurs
+        dans leur transformation digitale grâce à des solutions
+        innovantes, fiables et évolutives.
+    </p>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 My Web App — Tous droits réservés</p>
-    </footer>
+<!-- SECTION SERVICES -->
+<section class="section">
+    <h2>Nos domaines d’expertise</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Développement Web</h3>
+            <p>Sites et applications web modernes, rapides et responsives.</p>
+        </div>
+
+        <div class="card">
+            <h3>DevOps & Cloud</h3>
+            <p>CI/CD, Docker, déploiement automatique et haute disponibilité.</p>
+        </div>
+
+        <div class="card">
+            <h3>UI / UX Design</h3>
+            <p>Interfaces élégantes, animations 3D et expérience utilisateur optimale.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION VISION -->
+<section class="section glass">
+    <h2>Notre vision</h2>
+    <p>
+        Créer des expériences numériques immersives, inspirées
+        par la technologie, la créativité et l’innovation.
+    </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 My Web App — Tous droits réservés</p>
+</footer>
+
+<!-- Script galaxie -->
+<script>
+const canvas = document.getElementById("galaxy");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const stars = [];
+for (let i = 0; i < 150; i++) {
+    stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        d: Math.random() * 0.5 + 0.2
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "white";
+
+    stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+
+        s.y += s.d;
+        if (s.y > canvas.height) {
+            s.y = 0;
+            s.x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
