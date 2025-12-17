@@ -19,6 +19,8 @@
             padding: 100px 20px;
             position: relative;
             z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         h1 {
@@ -27,9 +29,14 @@
             margin-bottom: 20px;
         }
 
+        h2 {
+            color: #facc15;
+            margin-bottom: 15px;
+        }
+
         p {
             font-size: 1.2em;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         /* Badge stylé */
@@ -44,6 +51,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1.1em;
+            margin-bottom: 30px;
         }
 
         .badge:hover {
@@ -51,11 +59,29 @@
             transform: scale(1.05);
         }
 
+        .features {
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .features ul {
+            list-style: inside disc;
+        }
+
         canvas {
             position: fixed;
             top: 0;
             left: 0;
             z-index: 0;
+        }
+
+        a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -69,40 +95,27 @@
             🌐 Ouvrir My Web App
         </a>
 
-        <p style="margin-top: 40px;">
-            Accessible sur GitHub Pages<br>
-            <strong>https://adaxoooo-source.github.io/my-web-app1/</strong>
-        </p>
+        <!-- Section fonctionnalités -->
+        <div class="features">
+            <h2>✨ Fonctionnalités :</h2>
+            <ul>
+                <li>Portfolio interactif 3D</li>
+                <li>Badge cliquable pour accéder directement au site</li>
+                <li>Fond animé multicolore avec particules</li>
+                <li>Responsive sur mobile et desktop</li>
+                <li>Compatible GitHub Pages</li>
+                <li>Design moderne avec couleurs et animations</li>
+            </ul>
+            <p>
+                🌐 Site en ligne sur : 
+                <a href="https://adaxoooo-source.github.io/my-web-app1/" target="_blank">
+                    https://adaxoooo-source.github.io/my-web-app1/
+                </a>
+            </p>
+        </div>
     </div>
-<div class="container">
-    <h1>🚀 My Web App</h1>
-    <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif.</p>
 
-    <!-- Badge cliquable vers GitHub Pages -->
-    <a href="https://adaxoooo-source.github.io/my-web-app1/" target="_blank" class="badge">
-        🌐 Ouvrir My Web App
-    </a>
-
-    <!-- Section fonctionnalités -->
-    <div class="features" style="margin-top:40px; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
-        <h2>✨ Fonctionnalités :</h2>
-        <ul>
-            <li>Portfolio interactif 3D</li>
-            <li>Badge cliquable pour accéder directement au site</li>
-            <li>Fond animé multicolore avec particules</li>
-            <li>Responsive sur mobile et desktop</li>
-            <li>Compatible GitHub Pages</li>
-            <li>Design moderne avec couleurs et animations</li>
-        </ul>
-        <p>
-            🌐 Site en ligne sur : 
-            <a href="https://adaxoooo-source.github.io/my-web-app1/" target="_blank" style="color:#38bdf8;">
-                https://adaxoooo-source.github.io/my-web-app1/
-            </a>
-        </p>
-    </div>
-</div>
-
+    <!-- Canvas pour fond animé -->
     <canvas id="particles"></canvas>
 
     <script>
