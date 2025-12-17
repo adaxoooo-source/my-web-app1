@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App - Docker</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Web App</title>
     <style>
         body {
             margin: 0;
@@ -12,10 +11,13 @@
             background: #0f172a;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
 
         .container {
             padding: 80px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
@@ -43,20 +45,19 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: -1;
+            z-index: 0;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>🚀 My Web App</h1>
-        <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif déployé avec Docker.</p>
-        
-        <div class="badge" onclick="window.open('http://localhost:8080', '_blank')">
-    Docker Desktop actif ✔
-</div>
-
+        <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif.</p>
+        <div class="badge" onclick="alert('Docker Desktop actif ✔')">Docker Desktop actif ✔</div>
+        <p style="margin-top: 40px;">
+            🌐 Accessible sur GitHub Pages<br>
+            <strong>https://adaxoooo-source.github.io/my-web-app1/</strong>
+        </p>
     </div>
 
     <canvas id="particles"></canvas>
