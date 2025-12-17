@@ -3,89 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio DevOps - Docker</title>
-
+    <title>My Web App - Docker</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #020617);
+            font-family: Arial, sans-serif;
+            background: #0f172a;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            text-align: center;
         }
 
         .container {
-            text-align: center;
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            max-width: 500px;
+            padding: 80px 20px;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            margin-top: 0;
             color: #38bdf8;
+            font-size: 3em;
         }
 
         p {
-            font-size: 1.1em;
-            line-height: 1.5;
+            font-size: 1.2em;
+            margin: 20px 0;
         }
 
         .badge {
-            margin-top: 25px;
             display: inline-block;
-            padding: 12px 20px;
-            background: #16a34a;
+            padding: 10px 20px;
+            background-color: #16a34a;
             color: white;
-            border-radius: 30px;
             font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            margin-top: 20px;
         }
 
-        .badge:hover {
-            background: #22c55e;
-            transform: scale(1.05);
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <h1>🚀 My Web App</h1>
+        <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif déployé avec Docker.</p>
+        
+        <div class="badge" onclick="alert('Docker Desktop actif ✔')">Docker Desktop actif ✔</div>
 
-<div class="container">
-    <h1>🚀 Portfolio DevOps</h1>
-
-    <h2>Bienvenue 👋</h2>
-    <p>
-        Je m’appelle <strong>Marie</strong> et ceci est une application web
-        déployée automatiquement grâce à Docker et un pipeline CI/CD.
-    </p>
-
-    <!-- Badge cliquable -->
-    <div class="badge" onclick="openDockerInfo()">
-        Docker Desktop actif ✔
+        <p style="margin-top: 40px;">
+            📦 Application servie depuis un <strong>container Docker</strong><br>
+            🌐 Accessible sur <strong>http://localhost:8080</strong>
+        </p>
     </div>
-</div>
 
-<script>
-    function openDockerInfo() {
-        alert(
-            "✅ L'application tourne dans un conteneur Docker.\n\n" +
-            "📦 Image Docker construite automatiquement\n" +
-            "🌐 Accessible sur http://localhost:8080/"
-        );
-    }
-</script>
+    <canvas id="particles"></canvas>
 
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1,
+                dx: Math.random() - 0.5,
+                dy: Math.random() - 0.5
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.6)";
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
