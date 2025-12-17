@@ -2,148 +2,42 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>My Web App | Solutions Digitales</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Style principal -->
+    <title>My Web App | Accueil</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Police moderne -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Fond galaxie -->
-    <canvas id="galaxy"></canvas>
+    <div class="galaxy"></div>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="logo">🌌 My Web App</div>
+    <!-- Header -->
+    <header>
+        <h1 class="logo">🌌 My Web App</h1>
         <nav>
-            <a href="index.html">Accueil</a>
+            <a href="index.html" class="active">Accueil</a>
             <a href="about.html">À propos</a>
             <a href="services.html">Services</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- Section principale -->
     <section class="hero">
-        <h1>Construisons le futur du web</h1>
+        <h2>Solutions digitales venues d’ailleurs</h2>
         <p>
-            My Web App est une entreprise digitale spécialisée dans  
-            la création d’applications web modernes, sécurisées et performantes.
+            My Web App accompagne les entreprises dans la création  
+            d’applications web modernes, sécurisées et innovantes.
         </p>
 
-        <a href="services.html" class="btn-primary">
-            Explorer nos solutions
+        <a href="services.html" class="btn">
+            Explorer nos services 🚀
         </a>
     </section>
 
-    <!-- SECTION À PROPOS -->
-    <section class="section">
-        <h2>Qui sommes-nous ?</h2>
-        <p>
-            Nous aidons les entreprises à transformer leurs idées  
-            en solutions numériques innovantes grâce aux technologies modernes.
-        </p>
-
-        <div class="cards">
-            <div class="card">
-                <h3>🚀 Innovation</h3>
-                <p>Technologies modernes et évolutives.</p>
-            </div>
-
-            <div class="card">
-                <h3>🔒 Sécurité</h3>
-                <p>Applications fiables et sécurisées.</p>
-            </div>
-
-            <div class="card">
-                <h3>⚡ Performance</h3>
-                <p>Optimisation et rapidité garanties.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION SERVICES -->
-    <section class="section dark">
-        <h2>Nos services</h2>
-
-        <div class="cards">
-            <div class="card glass">
-                <h3>💻 Développement Web</h3>
-                <p>Sites et applications web sur mesure.</p>
-            </div>
-
-            <div class="card glass">
-                <h3>☁️ DevOps & CI/CD</h3>
-                <p>Automatisation, Docker, GitHub Actions.</p>
-            </div>
-
-            <div class="card glass">
-                <h3>📱 Applications modernes</h3>
-                <p>Solutions responsives et performantes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-        <h2>Prêt à lancer votre projet ?</h2>
-        <p>Contactez-nous et construisons ensemble votre solution digitale.</p>
-
-        <a href="contact.html" class="btn-secondary">
-            Nous contacter
-        </a>
-    </section>
-
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer>
         <p>© 2025 My Web App — Tous droits réservés</p>
     </footer>
-
-    <!-- SCRIPT GALAXIE -->
-    <script>
-        const canvas = document.getElementById("galaxy");
-        const ctx = canvas.getContext("2d");
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener("resize", resize);
-        resize();
-
-        const stars = [];
-        for (let i = 0; i < 150; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 2 + 0.5,
-                dx: (Math.random() - 0.5) * 0.3,
-                dy: (Math.random() - 0.5) * 0.3
-            });
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            stars.forEach(s => {
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(255,255,255,0.8)";
-                ctx.fill();
-
-                s.x += s.dx;
-                s.y += s.dy;
-
-                if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
-                if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
 
 </body>
 </html>
