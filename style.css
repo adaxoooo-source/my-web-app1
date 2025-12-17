@@ -1,106 +1,71 @@
-:root {
-  --bg: #0f172a;
-  --accent: #38bdf8;
-  --text: #ffffff;
-  --muted: #94a3b8;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  height: 100vh;
-  overflow: hidden;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0f172a;
+    color: white;
 }
 
+/* Header */
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #020617;
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.logo span {
-  color: var(--accent);
+    color: #38bdf8;
+    margin: 0;
 }
 
 nav a {
-  margin-left: 25px;
-  cursor: pointer;
-  color: var(--text);
-  text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-nav a.active,
 nav a:hover {
-  color: var(--accent);
+    color: #38bdf8;
 }
 
-main {
-  height: calc(100vh - 100px);
-  position: relative;
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
 }
 
-section {
-  position: absolute;
-  inset: 0;
-  display: none;
-  text-align: center;
-  padding: 100px 20px;
+.hero h2 {
+    font-size: 3em;
+    color: #facc15;
 }
 
-section.active {
-  display: block;
-}
-
-h1 {
-  font-size: 3rem;
-}
-
-h2 span {
-  color: var(--accent);
-}
-
-p {
-  margin: 20px auto;
-  max-width: 600px;
-  color: var(--muted);
-}
-
-ul {
-  list-style: none;
-  margin: 30px 0;
-}
-
-ul li {
-  margin: 10px 0;
+.hero p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 20px auto;
 }
 
 .btn {
-  padding: 12px 30px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 30px;
+    background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-.primary {
-  background: var(--accent);
-  color: #000;
+.btn:hover {
+    transform: scale(1.05);
 }
 
-.secondary {
-  background: transparent;
-  border: 2px solid var(--accent);
-  color: var(--text);
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    font-size: 0.9em;
 }
