@@ -29,19 +29,28 @@ jobs:
           echo "📦 Repository: ${{ github.repository }}"
           echo "🌿 Branch: ${{ github.ref_name }}"
           echo "📝 Commit: ${{ github.sha }}"
+          echo "⏰ Timestamp: $(date)"
           echo "========================================="
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+      - name: 📦 Prepare static files
+        run: |
+          echo "Preparing static files for deployment..."
+          mkdir -p _site
+          # Copy all web files
+          cp -r *.html _site/ 2>/dev/null || true
+          cp -r *.css _site/ 2>/dev/null || true
+          cp -r *.js _site/ 2>/dev/null || true
+          # List files being deployed
+          echo "Files to deploy:"
+          ls -la _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
 
   deploy:
     environment:
@@ -57,6 +66,17 @@ jobs:
       - name: 📊 Deployment summary
         run: |
           echo "========================================="
-          echo "✅ Deployment Completed!"
+          echo "✅ Deployment Completed Successfully!"
           echo "🌐 URL: ${{ steps.deployment.outputs.page_url }}"
           echo "========================================="
+
+      - name: 📢 Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ GitHub Pages deployment succeeded!"
+            echo "🔗 Your site is live at: ${{ steps.deployment.outputs.page_url }}"
+          else
+            echo "❌ GitHub Pages deployment failed!"
+            echo "Please check the workflow logs for details."
+          fi
