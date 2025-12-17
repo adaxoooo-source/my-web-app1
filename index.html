@@ -8,38 +8,42 @@
     <style>
         body {
             margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0f172a, #020617);
             color: white;
-            text-align: center;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            position: relative;
-            z-index: 2;
-            padding-top: 100px;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            max-width: 500px;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 10px;
-            color: #38bdf8;
         }
 
         h2 {
-            font-size: 2em;
-            margin-top: 30px;
+            margin-top: 0;
+            color: #38bdf8;
         }
 
         p {
             font-size: 1.1em;
-            opacity: 0.9;
+            line-height: 1.5;
         }
 
         .badge {
+            margin-top: 25px;
             display: inline-block;
-            margin-top: 30px;
             padding: 12px 20px;
             background: #16a34a;
             color: white;
@@ -53,87 +57,34 @@
             background: #22c55e;
             transform: scale(1.05);
         }
-
-        /* Canvas particules */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
     </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
 <div class="container">
-    <h1>🚀 Portfolio DevOps & Docker</h1>
+    <h1>🚀 Portfolio DevOps</h1>
 
     <h2>Bienvenue 👋</h2>
     <p>
-        Je suis <strong>Marie</strong>, étudiante en informatique passionnée par le DevOps,
-        la conteneurisation et l’automatisation CI/CD.
+        Je m’appelle <strong>Marie</strong> et ceci est une application web
+        déployée automatiquement grâce à Docker et un pipeline CI/CD.
     </p>
 
     <!-- Badge cliquable -->
     <div class="badge" onclick="openDockerInfo()">
         Docker Desktop actif ✔
     </div>
-
-    <p style="margin-top:20px;">
-        Application exécutée sur <strong>http://localhost:8080</strong>
-    </p>
 </div>
 
 <script>
-    /* Action au clic du badge */
     function openDockerInfo() {
         alert(
-            "Docker Desktop fonctionne correctement 🚀\n\n" +
-            "Cette application est servie depuis un conteneur Docker\n" +
-            "via le port 8080."
+            "✅ L'application tourne dans un conteneur Docker.\n\n" +
+            "📦 Image Docker construite automatiquement\n" +
+            "🌐 Accessible sur http://localhost:8080/"
         );
     }
-
-    /* Particules */
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let particles = [];
-    for (let i = 0; i < 60; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 2 + 1,
-            dx: Math.random() * 0.8 - 0.4,
-            dy: Math.random() * 0.8 - 0.4
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255,255,255,0.7)";
-            ctx.fill();
-            p.x += p.dx;
-            p.y += p.dy;
-            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
 </script>
 
 </body>
