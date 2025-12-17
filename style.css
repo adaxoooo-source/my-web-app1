@@ -8,6 +8,23 @@ body {
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
+.badge {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+}
+
+.badge:hover {
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+    transform: scale(1.05);
+}
 
 @keyframes gradientBG {
     0% {background-position: 0% 50%;}
