@@ -5,22 +5,103 @@ on:
     branches:
       - dev
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Run simple checks
-      run: |
-        if [ ! -f index.html ]; then
-          echo "index.html not found!"
-          exit 1
-        fi
+      - name: 📋 Display build information
+        run: |
+          echo "========================================="
+          echo "🚀 CI Pipeline Started"
+          echo "========================================="
+          echo "📦 Repository: ${{ github.repository }}"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo "⏰ Timestamp: $(date)"
+          echo "========================================="
 
-    - name: Build Docker image
-      run: |
-        docker build -t my-web-app-ci .
+      - name: 🔍 Validate HTML files
+        run: |
+          echo "Checking for required HTML files..."
+          files=("index.html" "features.html")
+          for file in "${files[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✅ $file exists"
+            else
+              echo "❌ $file not found!"
+              exit 1
+            fi
+          done
+
+      - name: 🧪 Run HTML validation tests
+        run: |
+          echo "Running HTML validation..."
+          for file in *.html; do
+            echo "Validating $file..."
+            # Check for DOCTYPE
+            if grep -q "<!DOCTYPE html>" "$file"; then
+              echo "  ✅ DOCTYPE declaration found"
+            else
+              echo "  ❌ DOCTYPE declaration missing in $file"
+              exit 1
+            fi
+            # Check for proper structure
+            if grep -q "<html" "$file" && grep -q "</html>" "$file"; then
+              echo "  ✅ HTML structure valid"
+            else
+              echo "  ❌ Invalid HTML structure in $file"
+              exit 1
+            fi
+          done
+          echo "✅ All HTML files validated successfully!"
+
+      - name: 🐳 Build Docker image
+        run: |
+          echo "Building Docker image..."
+          docker build -t my-web-app:${{ github.sha }} .
+          docker tag my-web-app:${{ github.sha }} my-web-app:latest
+          echo "✅ Docker image built successfully!"
+
+      - name: 🧪 Test Docker container
+        run: |
+          echo "Starting container for testing..."
+          docker run -d --name test-container -p 8080:80 my-web-app:latest
+          sleep 5
+          echo "Testing HTTP response..."
+          curl -f http://localhost:8080 || (echo "❌ Container test failed" && exit 1)
+          echo "✅ Container test passed!"
+          docker stop test-container
+          docker rm test-container
+
+      - name: 📦 Create build artifact
+        run: |
+          mkdir -p build-output
+          cp -r *.html *.css *.js build-output/ 2>/dev/null || true
+          cp Dockerfile docker-compose.yml build-output/ 2>/dev/null || true
+          echo "Build created at $(date)" > build-output/BUILD_INFO.txt
+          echo "Commit: ${{ github.sha }}" >> build-output/BUILD_INFO.txt
+
+      - name: 📤 Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-app-build-${{ github.sha }}
+          path: build-output/
+          retention-days: 30
+
+      - name: 📊 Build summary
+        run: |
+          echo "========================================="
+          echo "✅ CI Pipeline Completed Successfully!"
+          echo "========================================="
+          echo "📦 Artifact: web-app-build-${{ github.sha }}"
+          echo "🐳 Docker image: my-web-app:${{ github.sha }}"
+          echo "========================================="

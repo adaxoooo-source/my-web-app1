@@ -1,0 +1,26 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Render Deploy
+        run: |
+          echo "🚀 Triggering deployment to Render..."
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+          echo "✅ Deployment triggered successfully!"
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Render deployment triggered successfully"
+          else
+            echo "❌ Render deployment failed"
+          fi
