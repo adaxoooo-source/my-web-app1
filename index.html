@@ -2,106 +2,75 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Portfolio DevOps</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-        }
-
-        .ui {
-            background: #020617;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .ui button {
-            margin: 5px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #2563eb;
-            color: white;
-        }
-
-        .ui button.active {
-            background: #16a34a;
-        }
-
-        .section {
-            display: none;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .section h2 {
-            color: #38bdf8;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App - Docker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="index">
 
-<!-- MENU -->
-<div class="ui">
-    <button onclick="showSection('home', this)" class="active">Accueil</button>
-    <button onclick="showSection('skills', this)">Skills</button>
-    <button onclick="showSection('services', this)">Services</button>
-    <button onclick="showSection('blog', this)">Blog</button>
-    <button onclick="showSection('contact', this)">Contact</button>
-</div>
+    <!-- Fond animé -->
+    <canvas id="particles"></canvas>
 
-<!-- HOME -->
-<div id="home" class="section" style="display:block;">
-    <h2>Bienvenue 👋</h2>
-    <p>Je suis <strong>Marie</strong>, bienvenue dans mon portfolio 3D interactif.</p>
-</div>
+    <div class="container">
+        <h1>🐳 My Web App</h1>
+        <p>
+            Cette application web est déployée dans un <strong>container Docker</strong>
+            et affichée via <strong>Docker Desktop</strong>.
+        </p>
 
-<!-- ABOUT / SKILLS -->
-<div id="skills" class="section">
-    <h2>Compétences</h2>
-    <ul>
-        <li>JavaScript</li>
-        <li>Python</li>
-        <li>PHP</li>
-        <li>Docker</li>
-        <li>CI/CD – GitHub Actions</li>
-    </ul>
-</div>
+        <p>
+            🚀 Pipeline CI/CD avec GitHub Actions  
+            <br>
+            📦 Image Docker construite automatiquement
+        </p>
 
-<!-- SERVICES -->
-<div id="services" class="section">
-    <h2>Services</h2>
-    <p>Déploiement CI/CD, Dockerisation, automatisation DevOps.</p>
-</div>
+        <p class="status">
+            ✅ Container en cours d’exécution
+        </p>
+    </div>
 
-<!-- BLOG -->
-<div id="blog" class="section">
-    <h2>Blog</h2>
-    <p>Articles sur le DevOps, GitHub Actions et le Cloud.</p>
-</div>
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
 
-<!-- CONTACT -->
-<div id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Email : contact@portfolio.dev</p>
-</div>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-<script>
-    function showSection(id, btn) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.style.display = 'none');
+        let particles = [];
+        for (let i = 0; i < 60; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1,
+                dx: Math.random() - 0.5,
+                dy: Math.random() - 0.5
+            });
+        }
 
-        document.getElementById(id).style.display = 'block';
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.6)";
+                ctx.fill();
 
-        const buttons = document.querySelectorAll('.ui button');
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
-</script>
+                p.x += p.dx;
+                p.y += p.dy;
+
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 
 </body>
 </html>
