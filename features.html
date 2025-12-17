@@ -5,61 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fonctionnalités - My Web App</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .container {
-            padding: 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1, h2 {
-            color: #38bdf8;
-            margin-bottom: 20px;
-        }
-
-        ul {
-            text-align: left;
-            list-style: inside disc;
-            font-size: 1.2em;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-            color: white;
-            font-weight: bold;
-            border-radius: 12px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-            margin-top: 20px;
-        }
-
-        .badge:hover {
-            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
-            transform: scale(1.05);
-        }
-
-        a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -73,7 +18,55 @@
             <li>Design moderne avec couleurs et animations</li>
         </ul>
 
+        <!-- Badge retour à l'accueil -->
         <a href="index.html" class="badge">⬅ Retour à l'accueil</a>
     </div>
+
+    <!-- Canvas pour fond animé -->
+    <canvas id="particles"></canvas>
+
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
+        const particles = [];
+
+        for (let i = 0; i < 80; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 3 + 1,
+                dx: Math.random() * 1 - 0.5,
+                dy: Math.random() * 1 - 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+    </script>
 </body>
 </html>
