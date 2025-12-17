@@ -4,123 +4,146 @@
     <meta charset="UTF-8">
     <title>My Web App | Solutions Digitales</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
 
+    <!-- Style principal -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Police moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
-<!-- Fond galaxie -->
-<canvas id="galaxy"></canvas>
+    <!-- Fond galaxie -->
+    <canvas id="galaxy"></canvas>
 
-<!-- Header -->
-<header class="header">
-    <div class="logo">🌌 My Web App</div>
-    <nav>
-        <a href="index.html">Accueil</a>
-        <a href="about.html">À propos</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">🌌 My Web App</div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="about.html">À propos</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
 
-<!-- HERO -->
-<section class="hero">
-    <h1>Construisons le futur du web</h1>
-    <p>
-        My Web App est une entreprise spécialisée dans la création
-        d’applications web modernes, sécurisées et performantes.
-    </p>
-    <a href="services.html" class="btn">Explorer nos services</a>
-</section>
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Construisons le futur du web</h1>
+        <p>
+            My Web App est une entreprise digitale spécialisée dans  
+            la création d’applications web modernes, sécurisées et performantes.
+        </p>
 
-<!-- SECTION À PROPOS -->
-<section class="section glass">
-    <h2>À propos de nous</h2>
-    <p>
-        Nous accompagnons les entreprises et les entrepreneurs
-        dans leur transformation digitale grâce à des solutions
-        innovantes, fiables et évolutives.
-    </p>
-</section>
+        <a href="services.html" class="btn-primary">
+            Explorer nos solutions
+        </a>
+    </section>
 
-<!-- SECTION SERVICES -->
-<section class="section">
-    <h2>Nos domaines d’expertise</h2>
+    <!-- SECTION À PROPOS -->
+    <section class="section">
+        <h2>Qui sommes-nous ?</h2>
+        <p>
+            Nous aidons les entreprises à transformer leurs idées  
+            en solutions numériques innovantes grâce aux technologies modernes.
+        </p>
 
-    <div class="cards">
-        <div class="card">
-            <h3>Développement Web</h3>
-            <p>Sites et applications web modernes, rapides et responsives.</p>
+        <div class="cards">
+            <div class="card">
+                <h3>🚀 Innovation</h3>
+                <p>Technologies modernes et évolutives.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔒 Sécurité</h3>
+                <p>Applications fiables et sécurisées.</p>
+            </div>
+
+            <div class="card">
+                <h3>⚡ Performance</h3>
+                <p>Optimisation et rapidité garanties.</p>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-            <h3>DevOps & Cloud</h3>
-            <p>CI/CD, Docker, déploiement automatique et haute disponibilité.</p>
+    <!-- SECTION SERVICES -->
+    <section class="section dark">
+        <h2>Nos services</h2>
+
+        <div class="cards">
+            <div class="card glass">
+                <h3>💻 Développement Web</h3>
+                <p>Sites et applications web sur mesure.</p>
+            </div>
+
+            <div class="card glass">
+                <h3>☁️ DevOps & CI/CD</h3>
+                <p>Automatisation, Docker, GitHub Actions.</p>
+            </div>
+
+            <div class="card glass">
+                <h3>📱 Applications modernes</h3>
+                <p>Solutions responsives et performantes.</p>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-            <h3>UI / UX Design</h3>
-            <p>Interfaces élégantes, animations 3D et expérience utilisateur optimale.</p>
-        </div>
-    </div>
-</section>
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Prêt à lancer votre projet ?</h2>
+        <p>Contactez-nous et construisons ensemble votre solution digitale.</p>
 
-<!-- SECTION VISION -->
-<section class="section glass">
-    <h2>Notre vision</h2>
-    <p>
-        Créer des expériences numériques immersives, inspirées
-        par la technologie, la créativité et l’innovation.
-    </p>
-</section>
+        <a href="contact.html" class="btn-secondary">
+            Nous contacter
+        </a>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2025 My Web App — Tous droits réservés</p>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 My Web App — Tous droits réservés</p>
+    </footer>
 
-<!-- Script galaxie -->
-<script>
-const canvas = document.getElementById("galaxy");
-const ctx = canvas.getContext("2d");
+    <!-- SCRIPT GALAXIE -->
+    <script>
+        const canvas = document.getElementById("galaxy");
+        const ctx = canvas.getContext("2d");
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-const stars = [];
-for (let i = 0; i < 150; i++) {
-    stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2,
-        d: Math.random() * 0.5 + 0.2
-    });
-}
-
-function animate() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = "white";
-
-    stars.forEach(s => {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fill();
-
-        s.y += s.d;
-        if (s.y > canvas.height) {
-            s.y = 0;
-            s.x = Math.random() * canvas.width;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    });
+        window.addEventListener("resize", resize);
+        resize();
 
-    requestAnimationFrame(animate);
-}
-animate();
-</script>
+        const stars = [];
+        for (let i = 0; i < 150; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 0.5,
+                dx: (Math.random() - 0.5) * 0.3,
+                dy: (Math.random() - 0.5) * 0.3
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.8)";
+                ctx.fill();
+
+                s.x += s.dx;
+                s.y += s.dy;
+
+                if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+                if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 
 </body>
 </html>
