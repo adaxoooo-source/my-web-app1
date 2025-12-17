@@ -2,106 +2,96 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Portfolio DevOps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio DevOps - Docker</title>
+
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #020617);
             color: white;
-        }
-
-        .ui {
-            background: #020617;
-            padding: 15px;
             text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .ui button {
-            margin: 5px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #2563eb;
-            color: white;
-        }
-
-        .ui button.active {
-            background: #16a34a;
-        }
-
-        .section {
-            display: none;
+        .container {
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
-            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 600px;
         }
 
-        .section h2 {
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-weight: normal;
             color: #38bdf8;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #16a34a;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            text-decoration: none;
+        }
+
+        .badge:hover {
+            background: #22c55e;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #94a3b8;
         }
     </style>
 </head>
 
 <body>
 
-<!-- MENU -->
-<div class="ui">
-    <button onclick="showSection('home', this)" class="active">Accueil</button>
-    <button onclick="showSection('skills', this)">Skills</button>
-    <button onclick="showSection('services', this)">Services</button>
-    <button onclick="showSection('blog', this)">Blog</button>
-    <button onclick="showSection('contact', this)">Contact</button>
-</div>
+<div class="container">
 
-<!-- HOME -->
-<div id="home" class="section" style="display:block;">
+    <!-- TITRE MODIFIÉ -->
+    <h1>🚀 Environnement DevOps</h1>
+
+    <!-- TEXTE MODIFIÉ -->
     <h2>Bienvenue 👋</h2>
-    <p>Je suis <strong>Marie</strong>, bienvenue dans mon portfolio 3D interactif.</p>
+    <p>
+        Je m’appelle <strong>Marie</strong> et ce site démontre
+        le déploiement d’une application web à l’aide de Docker et d’un pipeline CI/CD.
+    </p>
+
+    <!-- BADGE CLIQUABLE -->
+    <a class="badge" href="https://www.docker.com/products/docker-desktop/" target="_blank">
+        Docker Desktop actif ✔
+    </a>
+
+    <footer>
+        Application servie depuis un container Docker (port 80)
+    </footer>
+
 </div>
-
-<!-- ABOUT / SKILLS -->
-<div id="skills" class="section">
-    <h2>Compétences</h2>
-    <ul>
-        <li>JavaScript</li>
-        <li>Python</li>
-        <li>PHP</li>
-        <li>Docker</li>
-        <li>CI/CD – GitHub Actions</li>
-    </ul>
-</div>
-
-<!-- SERVICES -->
-<div id="services" class="section">
-    <h2>Services</h2>
-    <p>Déploiement CI/CD, Dockerisation, automatisation DevOps.</p>
-</div>
-
-<!-- BLOG -->
-<div id="blog" class="section">
-    <h2>Blog</h2>
-    <p>Articles sur le DevOps, GitHub Actions et le Cloud.</p>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Email : contact@portfolio.dev</p>
-</div>
-
-<script>
-    function showSection(id, btn) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.style.display = 'none');
-
-        document.getElementById(id).style.display = 'block';
-
-        const buttons = document.querySelectorAll('.ui button');
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
