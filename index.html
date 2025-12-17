@@ -5,89 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web App</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .container {
-            padding: 120px 20px;
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: #38bdf8;
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin: 15px 0;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-            color: white;
-            font-weight: bold;
-            border-radius: 12px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-            margin: 10px;
-        }
-
-        .badge:hover {
-            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
-            transform: scale(1.05);
-        }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 My Web App</h1>
         <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif.</p>
 
-        <!-- Badge vers GitHub Pages -->
-        <a href="#" class="badge" onclick="alert('My Web App est déjà sur cette page !')">
-    🚀 My Web App
-</a>
-
-
+        <!-- Badge pour ouvrir les fonctionnalités -->
+        <a href="features.html" class="badge">
+            ✨ Voir les fonctionnalités
         </a>
-
-        <!-- Badge vers la page des fonctionnalités -->
-       <a href="features.html" class="badge">
-    ✨ Voir les fonctionnalités
-</a>
-
     </div>
 
     <!-- Canvas pour fond animé -->
@@ -101,7 +28,6 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
