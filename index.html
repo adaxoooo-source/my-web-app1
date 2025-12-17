@@ -1,66 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>My Web App | DevOps Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>🚀 My Web App</h1>
-        <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif.</p>
 
-        <!-- Badge pour ouvrir les fonctionnalités -->
-        <a href="features.html" class="badge">
-            ✨ Voir les fonctionnalités
-        </a>
-    </div>
+<header>
+  <div class="logo">My<span>WebApp</span></div>
+  <nav>
+    <a onclick="goTo('home')" class="active">Accueil</a>
+    <a onclick="goTo('features')">Fonctionnalités</a>
+    <a onclick="goTo('deploy')">Déploiement</a>
+    <a onclick="goTo('contact')">Contact</a>
+  </nav>
+</header>
 
-    <!-- Canvas pour fond animé -->
-    <canvas id="particles"></canvas>
+<main>
 
-    <script>
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
+  <!-- ACCUEIL -->
+  <section id="home" class="active">
+    <h1>🚀 My Web App</h1>
+    <h2>Projet <span>DevOps & CI/CD</span></h2>
+    <p>
+      Application web moderne démontrant l’intégration de Docker,
+      GitHub Actions et GitHub Pages.
+    </p>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+    <button onclick="goTo('features')" class="btn primary">
+      Découvrir le projet
+    </button>
+  </section>
 
-        const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
-        const particles = [];
+  <!-- FONCTIONNALITÉS -->
+  <section id="features">
+    <h1>✨ Fonctionnalités</h1>
+    <ul>
+      <li>Site web statique moderne</li>
+      <li>Pipeline CI/CD avec GitHub Actions</li>
+      <li>Image Docker prête au déploiement</li>
+      <li>Compatible Docker Desktop</li>
+      <li>Déployé sur GitHub Pages</li>
+    </ul>
 
-        for (let i = 0; i < 80; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 3 + 1,
-                dx: Math.random() * 1 - 0.5,
-                dy: Math.random() * 1 - 0.5,
-                color: colors[Math.floor(Math.random() * colors.length)]
-            });
-        }
+    <button onclick="goTo('deploy')" class="btn secondary">
+      Voir le déploiement
+    </button>
+  </section>
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-            });
-            requestAnimationFrame(animateParticles);
-        }
+  <!-- DÉPLOIEMENT -->
+  <section id="deploy">
+    <h1>📦 Déploiement</h1>
+    <p>
+      L’application est automatiquement déployée grâce à :
+    </p>
+    <ul>
+      <li>GitHub Actions (CI/CD)</li>
+      <li>Docker (containerisation)</li>
+      <li>GitHub Pages (hébergement)</li>
+    </ul>
 
-        animateParticles();
-    </script>
+    <a href="https://adaxoooo-source.github.io/my-web-app1/"
+       target="_blank"
+       class="btn primary">
+      Voir le site en ligne
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h1>📬 Contact</h1>
+    <p>Projet réalisé par <strong>Marie</strong></p>
+    <p>B2 IT – DevOps & Web</p>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
