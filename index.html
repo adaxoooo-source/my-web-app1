@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>My Web App | DevOps Experience</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaxoooo Tech</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <div class="logo">My<span>WebApp</span></div>
-  <nav>
-    <a onclick="goTo('home')" class="active">Accueil</a>
-    <a onclick="goTo('features')">Fonctionnalités</a>
-    <a onclick="goTo('deploy')">Déploiement</a>
-    <a onclick="goTo('contact')">Contact</a>
-  </nav>
-</header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <h2 class="logo">Adaxoooo Tech</h2>
+        <ul class="nav-links">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<main>
+    <!-- Accueil -->
+    <section id="home" class="section hero">
+        <h1>Solutions Digitales Innovantes</h1>
+        <p>Nous créons des applications modernes, fiables et performantes.</p>
+        <a href="#services" class="badge">Découvrir nos services</a>
+    </section>
 
-  <!-- ACCUEIL -->
-  <section id="home" class="active">
-    <h1>🚀 My Web App</h1>
-    <h2>Projet <span>DevOps & CI/CD</span></h2>
-    <p>
-      Application web moderne démontrant l’intégration de Docker,
-      GitHub Actions et GitHub Pages.
-    </p>
+    <!-- À propos -->
+    <section id="about" class="section">
+        <h2>À propos de nous</h2>
+        <p>
+            Adaxoooo Tech est une entreprise spécialisée dans le développement
+            web, l’automatisation CI/CD et les solutions cloud modernes.
+        </p>
+    </section>
 
-    <button onclick="goTo('features')" class="btn primary">
-      Découvrir le projet
-    </button>
-  </section>
+    <!-- Services -->
+    <section id="services" class="section dark">
+        <h2>Nos services</h2>
+        <ul class="list">
+            <li>Développement de sites web professionnels</li>
+            <li>Mise en place CI/CD avec GitHub Actions</li>
+            <li>Déploiement sur GitHub Pages & Docker</li>
+            <li>Maintenance et optimisation</li>
+        </ul>
+    </section>
 
-  <!-- FONCTIONNALITÉS -->
-  <section id="features">
-    <h1>✨ Fonctionnalités</h1>
-    <ul>
-      <li>Site web statique moderne</li>
-      <li>Pipeline CI/CD avec GitHub Actions</li>
-      <li>Image Docker prête au déploiement</li>
-      <li>Compatible Docker Desktop</li>
-      <li>Déployé sur GitHub Pages</li>
-    </ul>
+    <!-- Projets -->
+    <section id="projects" class="section">
+        <h2>Nos projets</h2>
+        <p>
+            Création de plateformes web modernes, portails professionnels et
+            solutions automatisées pour entreprises.
+        </p>
+    </section>
 
-    <button onclick="goTo('deploy')" class="btn secondary">
-      Voir le déploiement
-    </button>
-  </section>
+    <!-- Contact -->
+    <section id="contact" class="section dark">
+        <h2>Contact</h2>
+        <p>Email : contact@adaxoooo-tech.com</p>
+        <p>GitHub : adaxoooo-source</p>
+    </section>
 
-  <!-- DÉPLOIEMENT -->
-  <section id="deploy">
-    <h1>📦 Déploiement</h1>
-    <p>
-      L’application est automatiquement déployée grâce à :
-    </p>
-    <ul>
-      <li>GitHub Actions (CI/CD)</li>
-      <li>Docker (containerisation)</li>
-      <li>GitHub Pages (hébergement)</li>
-    </ul>
+    <!-- Footer -->
+    <footer>
+        © 2025 Adaxoooo Tech – Tous droits réservés
+    </footer>
 
-    <a href="https://adaxoooo-source.github.io/my-web-app1/"
-       target="_blank"
-       class="btn primary">
-      Voir le site en ligne
-    </a>
-  </section>
+    <!-- Fond animé -->
+    <canvas id="particles"></canvas>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h1>📬 Contact</h1>
-    <p>Projet réalisé par <strong>Marie</strong></p>
-    <p>B2 IT – DevOps & Web</p>
-  </section>
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
 
-</main>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-<script src="script.js"></script>
+        const colors = ["#38bdf8","#22c55e","#facc15","#a855f7"];
+        const particles = [];
+
+        for (let i = 0; i < 70; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 2 + 1,
+                dx: Math.random() * 0.6 - 0.3,
+                dy: Math.random() * 0.6 - 0.3,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+
 </body>
 </html>
