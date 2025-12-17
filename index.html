@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web App - Docker</title>
+    <title>My Web App</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background: #0f172a;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
 
         .container {
-            padding: 80px 20px;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
             color: #38bdf8;
             font-size: 3em;
+            margin-bottom: 20px;
         }
 
         p {
@@ -28,33 +32,46 @@
             margin: 20px 0;
         }
 
+        /* Badge stylé */
         .badge {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #16a34a;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #38bdf8, #0ea5e9);
             color: white;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 12px;
+            text-decoration: none;
             cursor: pointer;
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .badge:hover {
+            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+            transform: scale(1.05);
         }
 
         canvas {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: -1;
+            z-index: 0;
         }
     </style>
 </head>
-
 <body>
-   <!-- Badge cliquable stylé -->
-<a href="https://adaxoooo-source.github.io/my-web-app1/" target="_blank" class="badge">
-    🚀 Ouvrir My Web App
-</a>
+    <div class="container">
+        <h1>🚀 My Web App</h1>
+        <p>Bienvenue sur <strong>My Web App</strong>, votre portfolio interactif.</p>
 
+        <!-- Badge cliquable vers GitHub Pages -->
+        <a href="https://adaxoooo-source.github.io/my-web-app1/" target="_blank" class="badge">
+            🌐 Ouvrir My Web App
+        </a>
 
+        <p style="margin-top: 40px;">
+            Accessible sur GitHub Pages<br>
+            <strong>https://adaxoooo-source.github.io/my-web-app1/</strong>
         </p>
     </div>
 
@@ -64,40 +81,43 @@
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
 
-        function resize() {
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resize);
-        resize();
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
+        const colors = ["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#5f27cd"];
         const particles = [];
-        for (let i = 0; i < 50; i++) {
+
+        for (let i = 0; i < 80; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                r: Math.random() * 2 + 1,
-                dx: Math.random() - 0.5,
-                dy: Math.random() - 0.5
+                r: Math.random() * 3 + 1,
+                dx: Math.random() * 1 - 0.5,
+                dy: Math.random() * 1 - 0.5,
+                color: colors[Math.floor(Math.random() * colors.length)]
             });
         }
 
-        function animate() {
+        function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(255,255,255,0.6)";
+                ctx.fillStyle = p.color;
                 ctx.fill();
                 p.x += p.dx;
                 p.y += p.dy;
                 if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
             });
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateParticles);
         }
 
-        animate();
+        animateParticles();
     </script>
 </body>
 </html>
