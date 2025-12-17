@@ -8,7 +8,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY . /usr/share/nginx/html
 
 # Étape 4 : Exposer le port 8080
-EXPOSE 8080
+EXPOSE 80
 
 # Étape 5 : Lancer Nginx en mode foreground
 CMD ["nginx", "-g", "daemon off;"]
