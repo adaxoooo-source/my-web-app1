@@ -2,83 +2,104 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docker CI/CD Demo</title>
-
+    <title>Portfolio DevOps</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #020617);
+            font-family: Arial, sans-serif;
+            background: #0f172a;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        }
+
+        .ui {
+            background: #020617;
+            padding: 15px;
             text-align: center;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            max-width: 500px;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        p {
-            opacity: 0.85;
-        }
-
-        /* Badge Docker */
-        .badge {
-            margin-top: 25px;
-            display: inline-block;
-            padding: 12px 20px;
-            border-radius: 30px;
-            background: #2563eb;
+        .ui button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            background: #2563eb;
+            color: white;
         }
 
-        .badge:hover {
-            background: #1d4ed8;
-            transform: scale(1.05);
+        .ui button.active {
+            background: #16a34a;
         }
 
-        .status {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #22c55e;
+        .section {
             display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #38bdf8;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>🚀 Application Dockerisée</h1>
-    <p>Cette application web est servie depuis un container Docker.</p>
+<!-- MENU -->
+<div class="ui">
+    <button onclick="showSection('home', this)" class="active">Accueil</button>
+    <button onclick="showSection('skills', this)">Skills</button>
+    <button onclick="showSection('services', this)">Services</button>
+    <button onclick="showSection('blog', this)">Blog</button>
+    <button onclick="showSection('contact', this)">Contact</button>
+</div>
 
-    <!-- BADGE CLIQUABLE -->
-    <div class="badge" onclick="dockerActive()">
-        Docker Desktop actif ✔
-    </div>
+<!-- HOME -->
+<div id="home" class="section" style="display:block;">
+    <h2>Bienvenue 👋</h2>
+    <p>Je suis <strong>Marie</strong>, bienvenue dans mon portfolio 3D interactif.</p>
+</div>
 
-    <div id="status" class="status">
-        ✅ Le container Docker fonctionne correctement
-    </div>
+<!-- ABOUT / SKILLS -->
+<div id="skills" class="section">
+    <h2>Compétences</h2>
+    <ul>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>PHP</li>
+        <li>Docker</li>
+        <li>CI/CD – GitHub Actions</li>
+    </ul>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="section">
+    <h2>Services</h2>
+    <p>Déploiement CI/CD, Dockerisation, automatisation DevOps.</p>
+</div>
+
+<!-- BLOG -->
+<div id="blog" class="section">
+    <h2>Blog</h2>
+    <p>Articles sur le DevOps, GitHub Actions et le Cloud.</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email : contact@portfolio.dev</p>
 </div>
 
 <script>
-    function dockerActive() {
-        document.getElementById("status").style.display = "block";
+    function showSection(id, btn) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.style.display = 'none');
+
+        document.getElementById(id).style.display = 'block';
+
+        const buttons = document.querySelectorAll('.ui button');
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
     }
 </script>
 
